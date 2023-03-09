@@ -2,7 +2,8 @@
 
 1. Editorの導入方法
 2. Editorの表示方法
-3. version等
+3. ファイル構造
+4. version等
 
 ---
 
@@ -24,7 +25,21 @@
 
 3. [http://localhost:3000/](http://localhost:3000/)にアクセス
 
-<h2>3. 環境情報</h2>
+<h2>3. ファイル構造</h2>
+
+- /pages/index.tsx
+
+最初に表示されるページ．ここにコンポーネントをimportする．
+
+- /editor
+
+three.jsを開発するディレクトリ
+
+- /feature
+
+UIを開発するディレクトリ
+
+<h2>4. 環境情報</h2>
 
 - next.js            - 12.1.2
 - react              - 17.0.2
