@@ -1,48 +1,21 @@
-import { NextPage } from 'next';
-import { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Mesh } from 'three';
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import React, { useState, useEffect, useRef }  from 'react';
+import * as THREE from 'three/src/Three';
+import styles from '../styles/Home.module.css'
+import Button from '@material-ui/core/Button';
 
-type BoxProps = {
-  position: [x: number, y: number, z: number];
-};
-
-const Box: React.FC<BoxProps> = (props) => {
-  const mesh = useRef<Mesh>(null!);
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
-  useFrame(() => (mesh.current.rotation.x += 0.01));
-
-  return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? 1.5 : 1}
-      onClick={() => setActive(!active)}
-      onPointerOver={() => setHover(true)}
-      onPointerOut={() => setHover(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-    </mesh>
-  );
-};
+import Tab from "./feature/tab";
+import Editor from './editor';
 
 const Home: NextPage = () => {
-  {/* 画面いっぱいにCanvasが表示されるようdivでラップしている */}
-  return(
-    <div style={{ width: '100vw', height: '100vh' }}>
-    <Canvas>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
-    </Canvas>
-  </div>
+  return (
+    <div className={styles.container}>
+      <Tab />
+      <Editor />
+    </div>
   )
-  
 }
 
-
-
-export default Home;
+export default Home
