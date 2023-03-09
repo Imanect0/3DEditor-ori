@@ -1,4 +1,4 @@
-<h1　style="text-align:center">3D Editorについて</h1>
+<p style="text-align:center"><h1>3D Editorについて</h1></p>
 
 1. Editorの導入方法
 2. Editorの表示方法
