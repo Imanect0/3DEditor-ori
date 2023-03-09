@@ -1,4 +1,4 @@
-<h1>3D Editor</h1>
+<h1　style="text-align:center">3D Editorについて</h1>
 
 1. Editorの導入方法
 2. Editorの表示方法
@@ -22,7 +22,7 @@
 
     `npm run dev`
 
-3. `[http://localhost:3000/](http://localhost:3000/)`にアクセス
+3. [http://localhost:3000/](http://localhost:3000/)にアクセス
 
 <h2>3. 環境情報</h2>
 
