@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1>3D Editorについて</h1></p>
 
-## Getting Started
+1. Editorの導入方法
+2. Editorの表示方法
+3. ファイル構造
+4. version等
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<h2>1. Editorの導入方法</h2>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. [node.js](https://nodejs.org/ja/download/)をインストール
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+※next.js・three.js等の開発に必要なライブラリはインストール済みです．
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+<h2>2. Editorの表示方法</h2>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. githubのdevelopブランチからクローンする．
+   
+   `git clone -b develop https://github.com/Imanect0/3DEditor-ori.git`
 
-## Learn More
+2. 3DEditor-oriディレクトリに入り，ローカルサーバーを立ち上げる
 
-To learn more about Next.js, take a look at the following resources:
+    `npm run dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. [http://localhost:3000/](http://localhost:3000/)にアクセス
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<h2>3. ファイル構造</h2>
 
-## Deploy on Vercel
+- /pages/index.tsx
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+最初に表示されるページ．ここにコンポーネントをimportする．
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- /editor
+
+three.jsを開発するディレクトリ
+
+- /feature
+
+UIを開発するディレクトリ
+
+<h2>4. 環境情報</h2>
+
+- next.js            - 13.2.4
+- react              - 18.2.0
+- three.js           - 0.150.1
+- typescript         - 4.9.5
+- material-ui        - MUI v5
+- react-three-fiver  - 8.12.0
+- react-three-drei   - 9.57.2
+
+※[package.json](https://github.com/Imanect0/3DEditor-ori/blob/test/package.json)参照back and contributions are welcome!
+
