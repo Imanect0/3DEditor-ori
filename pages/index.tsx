@@ -8,12 +8,15 @@ import Button from '@material-ui/core/Button';
 
 import Tab from "./feature/tab";
 import Editor from './editor';
+import ClickMenu from "./feature/clickMenu";
+import GetClickedObject from "./feature/getClickedObject";
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Tab />
       <Editor />
+        <ClickMenu /> {/* ui担当sho800追加*/}
     </div>
   )
 }
