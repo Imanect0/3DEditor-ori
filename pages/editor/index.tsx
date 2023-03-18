@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { DstAlphaFactor, Mesh } from 'three';
 import * as THREE from "three";
+import { OrbitControls } from '@react-three/drei';
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
@@ -51,6 +52,7 @@ const Editor = () => {
   return(
     <div style={{ width: '100vw', height: '100vh' }}>
     <Canvas id='myCanvas'>
+      <OrbitControls />
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
