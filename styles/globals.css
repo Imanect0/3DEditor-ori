@@ -105,3 +105,150 @@ a {
     color-scheme: dark;
   }
 } */
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  width:7%;
+  height: 3rem;
+  color: white;
+  background-color: rgb(153, 153, 153);
+  position: fixed;
+  z-index: 10000;
+}
+
+#fileButton {
+  top: 0rem;
+  left: 0rem;
+}
+
+#editButton {
+  top: 0rem;
+  left: 6.8rem;
+}
+
+#templateButton {
+  top: 0rem;
+  left: 13.6rem;
+}
+
+#settingButton {
+  top: 0rem;
+  left: 20.4rem;
+}
+
+#ResetButton {
+  top: 3rem;
+  left: 0rem;
+}
+
+#InportButton {
+  top: 6rem;
+  left: 0rem;
+}
+
+#ExportButton {
+  top: 9rem;
+  left: 0rem;
+}
+
+#DaeButton {
+  top: 9rem;
+  left: 6.8rem;
+}
+
+#DrcButton {
+  top: 12rem;
+  left: 6.8rem;
+}
+
+#ExrButton {
+  top: 15rem;
+  left: 6.8rem;
+}
+
+#GltfButton {
+  top: 18rem;
+  left: 6.8rem;
+}
+
+#ObjButton {
+  top: 21rem;
+  left: 6.8rem;
+}
+
+#PlyButton {
+  top: 24rem;
+  left: 6.8rem;
+}
+
+#StlButton {
+  top: 27rem;
+  left: 6.8rem;
+}
+
+#CubeButton {
+  top: 3rem;
+  left: 13.6rem;
+}
+
+#RingButton {
+  top: 6rem;
+  left: 13.6rem;
+}
+
+#CircleButton {
+  top: 9rem;
+  left: 13.6rem;
+}
+
+#SphereButton {
+  top: 12rem;
+  left: 13.6rem;
+}
+
+#CylinderButton {
+  top: 15rem;
+  left: 13.6rem;
+}
+
+#ConeButton {
+  top: 18rem;
+  left: 13.6rem;
+}
+
+#TetraButton {
+  top: 21rem;
+  left: 13.6rem;
+}
+
+#OctaButton {
+  top: 24rem;
+  left: 13.6rem;
+}
+
+#TorusButton {
+  top: 27rem;
+  left: 13.6rem;
+}
+
+#IcosaButton {
+  top: 30rem;
+  left: 13.6rem;
+}
