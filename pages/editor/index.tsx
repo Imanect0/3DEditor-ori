@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { useEffect, useRef, useState, ReactElement } from 'react';
+import { Canvas, ThreeElements, useFrame, MeshProps } from '@react-three/fiber';
 import { DstAlphaFactor, Mesh } from 'three';
 import * as THREE from "three";
 import { OrbitControls } from '@react-three/drei';
@@ -49,6 +49,16 @@ const openEditMenu = () =>{
 
 
 const Editor = () => {
+  // 3dオブジェクト管理用配列
+  const [meshes, setMeshes] = useState<THREE.Mesh[]>([]);
+
+  const addMeshes = (mesh : THREE.Mesh) => setMeshes(prevMeshes => [...prevMeshes, mesh])
+  // 表示テストコード
+  useEffect(()=>{
+    addMeshes(new THREE.Mesh(new THREE.CircleGeometry(1, 1, 1), new THREE.MeshStandardMaterial({color: 'red'}))),
+    addMeshes(new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshStandardMaterial({color: 'blue'})))
+    }, [])
+
   return(
     <div style={{ width: '100vw', height: '100vh' }}>
     <Canvas id='myCanvas'>
@@ -57,6 +67,9 @@ const Editor = () => {
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} />
       <Box position={[1.2, 0, 0]} />
+      {meshes.map((mesh, index) => 
+        <mesh key={index} geometry={mesh.geometry} material={mesh.material} position={mesh.position} />
+      )}
     </Canvas>
   </div>
   )
