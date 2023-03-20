@@ -14,3 +14,86 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#drawer_button{
+  z-index: 2;
+  display: block;
+  height: 20px;
+  width: 15px;
+  background: gray;
+  position: fixed;
+  top: 45px;
+  right: 0;
+}
+
+#drawer_button2{
+  z-index: 2;
+  display: block;
+  height: 20px;
+  width: 15px;
+  background: gray;
+  position: fixed;
+  top: 45px;
+  right: 20%;
+}
+
+#drawer_button span{
+  height: 1px;
+  width: 10px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#drawer_button2 span{
+  height: 1px;
+  width: 10px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+#drawer_button span:nth-of-type(2){
+  transform: translate(-50%,-50%);
+}
+
+#drawer_button span:nth-of-type(1){
+  transform: translate(-50%,-5px);
+}
+
+#drawer_button span:nth-of-type(3){
+  transform: translate(-50%,4px);
+}
+
+#drawer_button2 span:nth-of-type(1){
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+#drawer_button2 span:nth-of-type(2){
+  opacity: 0;
+}
+
+#drawer_button2 span:nth-of-type(3){
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+
+#drawer_menu{
+  width: 20vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: darkgrey;
+  width: 100;
+  opacity: 0.8;
+}
+
+#drawer_button.active {
+  right: 20%;
+}
+
