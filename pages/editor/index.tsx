@@ -3,7 +3,7 @@ import {useRef, useState, MouseEvent} from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import {DstAlphaFactor, Mesh, Object3D, Vector2} from 'three';
 import ClickMenu from '../feature/clickmenu/clickMenu';
-import GetClickedObject from "./getClickedObject";
+import ClickObject from "./clickObject";
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
@@ -58,7 +58,7 @@ const Editor = () => {
   const componentRefGetObject = useRef<clickMenuRefType>(); /*SHO800*/
   const onClickCanvas = (event: MouseEvent<HTMLDivElement>) => {/*SHO800*/
     if (componentRefGetObject.current) {
-      componentRefGetObject.current.onClickCanvas();
+      componentRefGetObject.current.clickObject();
     }
     setCursorPosition(new Vector2(event.clientX, event.clientY));
   }
@@ -67,7 +67,7 @@ const Editor = () => {
   return(
     <div style={{ width: '100vw', height: '100vh' }}>
     <Canvas id='myCanvas' onClick={event => onClickCanvas(event)}>
-      <GetClickedObject ref={componentRefGetObject} setActiveObject={setActiveObject} /> {/*SHO800*/}
+      <ClickObject ref={componentRefGetObject} setActiveObject={setActiveObject} /> {/*SHO800*/}
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Box position={[-1.2, 0, 0]} activeObject={activeObject} />

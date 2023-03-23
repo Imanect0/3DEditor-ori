@@ -13,12 +13,12 @@ type Props = {
     setActiveObject: Dispatch<SetStateAction<Object3D | null>>;
 }
 
-const GetClickedObject = forwardRef<unknown, Props>((props, ref) => {
+const ClickObject = forwardRef<unknown, Props>((props, ref) => {
     const {camera, mouse, scene} = useThree(); /*SHO800*/
     const raycaster = new THREE.Raycaster(); /*SHO800*/
 
     useImperativeHandle(ref, () => ({
-        onClickCanvas: () => {
+        clickObject: () => {
             raycaster.setFromCamera(mouse, camera);
             const intersects = raycaster.intersectObjects(scene.children);
             if (intersects.length > 0) { //クリックされた場所にオブジェクトがあった場合
@@ -39,4 +39,4 @@ const GetClickedObject = forwardRef<unknown, Props>((props, ref) => {
  return <></>;
 });
 
-export default GetClickedObject;
+export default ClickObject;
