@@ -23,9 +23,6 @@ const ClickMenu: FC<ClickMenu> = (props) => {
         );
     }
 
-
-
-
     const buttonProps = {
         // fullWidth: true,
         // variant: 'outlined',

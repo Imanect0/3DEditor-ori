@@ -1,12 +1,13 @@
 import { NextPage } from 'next';
-import {createContext, Dispatch, MouseEventHandler, SetStateAction, useContext, useRef, useState, MouseEvent} from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import {useRef, useState, MouseEvent} from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {DstAlphaFactor, Mesh, Object3D, Vector2} from 'three';
 import ClickMenu from '../feature/clickmenu/clickMenu';
 import GetClickedObject from "./getClickedObject";
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
+  activeObject: Object3D | null; /*SHO800*/
 };
 
 const Box: React.FC<BoxProps> = (props) => {
@@ -18,8 +19,8 @@ const Box: React.FC<BoxProps> = (props) => {
     <mesh
       {...props}
       ref={mesh}
-      scale={active ? 1.5 : 1}
-      onClick={() => setActive(!active)}
+      scale={mesh.current === props.activeObject ? 1.5 : 1} /*アクティブかそうでないかをactiveObjectで判別しなければならないため仮変更(SHO800)、要協議 変更前: active ? 1.5 : 1*/
+      // onClick={() => setActive(!active)} /*上記の理由で無効化(SHO800)*/
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
     >
@@ -53,7 +54,7 @@ type clickMenuRefType = { /*SHO800*/
 
 const Editor = () => {
   const [activeObject, setActiveObject] = useState<Object3D | null>(null); /*SHO800*/
-  const [cursorPosition, setCursorPosition] = useState<Vector2>(new Vector2(0, 0))
+  const [cursorPosition, setCursorPosition] = useState<Vector2>(new Vector2(0, 0)) /*SHO800*/
   const componentRefGetObject = useRef<clickMenuRefType>(); /*SHO800*/
   const onClickCanvas = (event: MouseEvent<HTMLDivElement>) => {/*SHO800*/
     if (componentRefGetObject.current) {
@@ -69,8 +70,8 @@ const Editor = () => {
       <GetClickedObject ref={componentRefGetObject} setActiveObject={setActiveObject} /> {/*SHO800*/}
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Box position={[-1.2, 0, 0]} />
-      <Box position={[1.2, 0, 0]} />
+      <Box position={[-1.2, 0, 0]} activeObject={activeObject} />
+      <Box position={[1.2, 0, 0]} activeObject={activeObject} />
     </Canvas>
     <ClickMenu activeObject={activeObject} cursorPosition={cursorPosition} /> {/*SHO800*/}
   </div>

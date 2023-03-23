@@ -1,4 +1,4 @@
-import {Dispatch, ForwardedRef, forwardRef, SetStateAction, useImperativeHandle,} from "react";
+import {Dispatch, forwardRef, SetStateAction, useImperativeHandle,} from "react";
 import {Mesh, Object3D} from "three";
 import {useThree} from "@react-three/fiber";
 import * as THREE from "three";
