@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import * as THREE from "three/src/Three";
-
+import { useState } from "react";
 import { Stack } from "@mui/material";
 
 import Editor from "./editor";
@@ -11,9 +11,16 @@ import BasicMenu from "./feature/header/menu_file";
 import TemporaryDrawer from "./feature/drawer";
 import HeaderNav from "./feature/header/header";
 
+import { ObjectsContext } from "./editor/dataContainer";
+
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+    // 3dオブジェクト管理用配列
+  const [objects, setObjects] = useState<THREE.Object3D[]>([]);
+  const addObjects = (mesh: THREE.Object3D) => setObjects(prevMeshes => [...prevMeshes, mesh])
+
   return (
     <>
       <Head>
@@ -23,12 +30,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Stack direction="row">
-          <HeaderNav />
-          <TemporaryDrawer />
-        </Stack>
+        <ObjectsContext.Provider value={{objects, addObjects}}>
+          <Stack direction="row">
+            <HeaderNav/>
+            <TemporaryDrawer />
+          </Stack>
 
-        <Editor />
+          <Editor />
+        </ObjectsContext.Provider>
+
       </main>
     </>
   );

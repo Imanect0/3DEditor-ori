@@ -1,10 +1,11 @@
 import { NextPage } from 'next';
-import { useEffect, useRef, useState, ReactElement } from 'react';
+import { useEffect, useRef, useState, ReactElement, useContext } from 'react';
 import { Canvas, ThreeElements, useFrame, MeshProps, useLoader } from '@react-three/fiber';
 import * as THREE from "three";
 import { OrbitControls } from '@react-three/drei';
 import MeshLoader from './Loader'
 import { Object3D } from 'three';
+import { ObjectsContext } from './dataContainer';
 
 type BoxProps = {
   position: [x: number, y: number, z: number];
@@ -50,19 +51,7 @@ const openEditMenu = () => {
 
 
 const Editor = () => {
-
-
-
-  // 3dオブジェクト管理用配列
-  const [objects, setObject] = useState<THREE.Object3D[]>([]);
-  const meshLoader = new MeshLoader()
-
-  const import3dObject = async (loadedFile: File) => {
-    const object =  await meshLoader.loadFile(loadedFile);
-    addObject(object)
-  }
-
-  const addObject = (mesh: THREE.Object3D) => setObject(prevMeshes => [...prevMeshes, mesh])
+  const { objects, addObjects } = useContext(ObjectsContext)
 
   // 表示テストコード(最初のみ実行)
   // useEffect(() => {
@@ -71,10 +60,6 @@ const Editor = () => {
   // }, [])
 
   return (
-    <>
-      <input type='file' onChange={(e) => {
-        e.target.files?.length != null ? import3dObject(e.target.files[0]): e
-      } } />
       <div style={{ width: '100vw', height: '100vh' }}>
         <Canvas id='myCanvas'>
           <OrbitControls />
@@ -82,14 +67,16 @@ const Editor = () => {
           <pointLight position={[10, 10, 10]} />
           {/* <Box position={[-1.2, 0, 0]} />
           <Box position={[1.2, 0, 0]} /> */}
+
           {objects.map((mesh, index) =>
+            // primitiveとmeshをどうするか悩み中。
+            // どっちも許容してコンポーネントを配列とかで持ったほうがよさそう
             <primitive object={mesh} key={index}/>
             // <mesh key={index} geometry={mesh.geometry} material={mesh.material} position={mesh.position} />
           )}
+          
         </Canvas>
       </div>
-    </>
-
   )
 
 }

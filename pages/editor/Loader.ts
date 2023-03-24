@@ -2,8 +2,6 @@ import * as THREE from "three";
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 class MeshLoader {
   loadingManager: THREE.LoadingManager;
@@ -46,11 +44,9 @@ class MeshLoader {
   }
   // 拡張子によってloaderと成功時の処理を選択する関数
 
-  async loadFile(inputFile: File) {
-    console.log('loadFile function')
+  async loadFile(inputFile: File, ) {
     const fileName: string = inputFile.name
-    const reader = new FileReader();
-    let loadedModel: THREE.Object3D;
+    let loadedModel = new THREE.Object3D();
 
     const dataUrl = await this.convert2DataUrl(inputFile)
 

@@ -3,18 +3,43 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-export default function File(props : {name : string}) {
+import { ObjectsContext } from '../../editor/dataContainer';
+import MeshLoader from '../../editor/Loader';
+
+export default function File(props: { name: string }) {
+  const { objects, addObjects } = React.useContext(ObjectsContext)
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const import3dObject = async (loadedFile: File) => {
+    const meshLoader = new MeshLoader()
+    const object = await meshLoader.loadFile(loadedFile);
+    console.log(object)
+    addObjects(object)
+  }
+
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const clickImportMenu = () => {
+    inputRef.current?.click()
+    handleClose()
+  }
 
   return (
     <div>
+      <input type='file'
+        style={{ display: 'none' }}
+        ref={inputRef}
+        onChange={(e) => {
+          console.log('onchange input')
+          e.target.files?.length != null ? import3dObject(e.target.files[0]) : e
+        }} />
       <Button
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -23,8 +48,8 @@ export default function File(props : {name : string}) {
         onClick={handleClick}
         //ボタンのスタイル
         style={{
-          background:"blue",
-          color:"white"
+          background: "blue",
+          color: "white"
         }}
       >
         {props.name}
@@ -40,7 +65,7 @@ export default function File(props : {name : string}) {
         }}
       >
         <MenuItem onClick={handleClose}>Reset</MenuItem>
-        <MenuItem onClick={handleClose}>Import</MenuItem>
+        <MenuItem onClick={clickImportMenu}>Import</MenuItem>
         <MenuItem onClick={handleClose}>Export</MenuItem>
       </Menu>
     </div>
